@@ -114,7 +114,7 @@ app.get('/completed/:quantity', async (req, res) => {
 app.get('/date/:quantity', async (req, res) => {
     try {
         const {quantity} = req.params
-        const searchRes = await pool.query("SELECT * FROM perntable WHERE date = $1", [quantity])
+        const searchRes = await pool.query("SELECT * FROM perntable WHERE date ~* $1", [quantity])
         res.json(searchRes.rows)
         
     } catch (error) {
