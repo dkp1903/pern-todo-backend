@@ -4,7 +4,7 @@
 > - Database : PostgreSQL
 > - Backend : Node - Express
 
-> Also included in the repo : [Block diagram](./pern-todo.pdf)
+> Also included in the repo : [Block diagram](https://bit.ly/pern-todo-block)
 
 > Time taken : 6 hours
 
