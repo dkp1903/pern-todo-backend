@@ -12,9 +12,6 @@ app.post('/', async (req, res) => {
         const completed = false
         const newTodo = await pool.query('INSERT INTO perntable (description, priority, completed, date) VALUES($1, $2, $3, $4) RETURNING *', 
         [description, priority, completed, date])
-        console.log(date)
-        console.log(priority)
-
         res.json(newTodo.rows[0])
         
     } catch(err){
