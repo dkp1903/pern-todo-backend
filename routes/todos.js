@@ -8,8 +8,8 @@ app.post('/', async (req, res) => {
     try {
         const {description} = req.body
         const {priority} = req.body
-        const date = new Date().toString()
-        const completed = false
+        const {date} = req.body
+        const {completed} = req.body
         const newTodo = await pool.query('INSERT INTO perntable (description, priority, completed, date) VALUES($1, $2, $3, $4) RETURNING *', 
         [description, priority, completed, date])
         res.json(newTodo.rows[0])
