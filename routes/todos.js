@@ -48,7 +48,10 @@ app.put('/:id', async (req, res) => {
     try {
         const {id} = req.params
         const {description} = req.body
-        const updateTodo = await pool.query("UPDATE perntable SET description = $1 WHERE todo_id = $2", [description, id])
+        const {completed} = req.body
+        const {priority} = req.body
+        const {date} = req.body
+        const updateTodo = await pool.query("UPDATE perntable SET description = $1, priority = $2, completed = $3, date = $4 WHERE todo_id = $5", [description, priority, completed, date, id])
 
         res.json('Todo Updated')
     } catch (error) {
@@ -100,7 +103,7 @@ app.get('/completed/:quantity', async (req, res) => {
         const {quantity} = req.params
         const searchRes = await pool.query("SELECT * FROM perntable WHERE completed = $1", [quantity])
         res.json(searchRes.rows)
-        
+        res.send(searchRes)
     } catch (error) {
         console.error(error.message)
     }
